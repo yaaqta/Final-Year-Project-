@@ -24,7 +24,7 @@ app = Flask(__name__)
 device = torch.device('cpu')
 
 # Load model YOLOv12 pretrain cho face detection
-yolo_model = YOLO('V2_automatic_lockers/automatic_lockers/yolov12n-face.pt')  
+yolo_model = YOLO('automatic_lockers/yolov12n-face.pt')  
 
 # Load FaceNet pretrain cho trích xuất vector embedding
 resnet = InceptionResnetV1(pretrained='vggface2').eval().to(device)

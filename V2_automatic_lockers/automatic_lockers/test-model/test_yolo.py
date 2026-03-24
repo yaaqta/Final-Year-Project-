@@ -2,69 +2,84 @@ import cv2
 from ultralytics import YOLO
 import numpy as np
 import time
+import torch
+import os
 
-# Load model (đường dẫn từ code gốc)
-model_path = 'V2_automatic_lockers/automatic_lockers/yolov12n-face.pt'
+print("=== YOLOv12 Face Detection Test on VIDEO ===")
+
+# 1. Kiểm tra GPU
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(f"Using device: {device}")
+
+# 2. Load model
+model_path = 'automatic_lockers/yolov12n-face.pt'
 yolo_model = YOLO(model_path)
+yolo_model.to(device)
+print("Model loaded successfully!")
 
-# Mở webcam (index 1 cho USB cam)
-cap = cv2.VideoCapture(1)  # Thay 0 nếu webcam laptop
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-cap.set(cv2.CAP_PROP_FPS, 30)
-cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+# 3. MỞ FILE VIDEO (Thay vì mở webcam)
+video_path = 'test_locker_flipped.mp4' 
 
-print("=== YOLOv12 Face Detection Test ===")
-print("Nhấn 'q' để thoát, 's' để lưu ảnh test")
+if not os.path.exists(video_path):
+    print(f"LỖI: Không tìm thấy file {video_path}. Ân kiểm tra lại tên file nhé!")
+else:
+    cap = cv2.VideoCapture(video_path)
+    print(f"Đang chạy test trên video: {video_path}")
+
+print("Press 'q' to quit, 's' to save test image")
 
 fps_counter = 0
 start_time = time.time()
+img_count = 0
 
-while True:
+while cap.isOpened():
     ret, frame = cap.read()
+    
+    # Kiểm tra nếu hết video thì dừng hoặc reset
     if not ret:
-        print("Camera error!")
+        print("Hết video hoặc lỗi file!")
         break
-    
-    frame = cv2.flip(frame, 1)  # Mirror
-    
+
+    # LƯU Ý: Vì video quay trước đó đã lật rồi, nên mình KHÔNG dùng cv2.flip nữa
+    # Nếu Ân muốn lật tiếp thì bỏ comment dòng dưới:
+    # frame = cv2.flip(frame, 1)
+
     # YOLO detect
-    results = yolo_model(frame, device='cpu', verbose=False, conf=0.5)
-    
-    # Vẽ bounding boxes
+    results = yolo_model(frame, verbose=False, conf=0.5)
+
+    # Vẽ boxes
     for res in results:
         if res.boxes is not None:
-            boxes = res.boxes.xyxy.cpu().numpy()  # [x1,y1,x2,y2]
+            boxes = res.boxes.xyxy.cpu().numpy()
             confidences = res.boxes.conf.cpu().numpy()
-            
-            for i, (box, conf) in enumerate(zip(boxes, confidences)):
+
+            for box, conf in zip(boxes, confidences):
                 x1, y1, x2, y2 = map(int, box)
                 label = f"Face {conf:.2f}"
-                
-                # Vẽ box xanh
-                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.putText(frame, label, (x1, y1-10), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-    
-    # FPS counter
+
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0,255,0), 2)
+                cv2.putText(frame, label, (x1, y1-10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+
+    # Tính FPS
     fps_counter += 1
-    if fps_counter % 30 == 0:
-        fps = 30 / (time.time() - start_time)
-        print(f"FPS: {fps:.1f}")
-        start_time = time.time()
-    
-    # FPS hiển thị
-    cv2.putText(frame, f"FPS: {fps_counter//30:.1f}", (10, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-    
-    cv2.imshow("YOLOv12 Face Detection Test", frame)
-    
+    elapsed = time.time() - start_time
+    fps = fps_counter / elapsed if elapsed > 0 else 0
+
+    cv2.putText(frame, f"FPS: {fps:.1f}", (10,30),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2)
+
+    cv2.imshow("YOLOv12 Face Detection - Video Test", frame)
+
     key = cv2.waitKey(1) & 0xFF
     if key == ord('q'):
         break
     elif key == ord('s'):
-        cv2.imencode('.jpg', frame)[1].tofile('test_face_detect.jpg')
-        print("Saved test_face_detect.jpg")
+        # Tạo thư mục imgs nếu chưa có
+        if not os.path.exists('imgs'): os.makedirs('imgs')
+        cv2.imwrite(f'imgs/test_face_detect_{img_count}.jpg', frame)
+        print(f"Saved imgs/test_face_detect_{img_count}.jpg")
+        img_count += 1
 
 cap.release()
 cv2.destroyAllWindows()
