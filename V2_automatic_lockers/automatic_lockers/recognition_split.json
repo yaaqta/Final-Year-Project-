@@ -1,0 +1,282 @@
+{
+  "registered_identities": [
+    "Diep",
+    "Huy",
+    "Khai",
+    "Mai",
+    "Minh",
+    "Phuong",
+    "TAnh",
+    "Viet"
+  ],
+  "stranger_identities": [
+    "An",
+    "Bac",
+    "Doanh",
+    "Hoa"
+  ],
+  "identity_split": {
+    "An": "dev",
+    "Bac": "test",
+    "Diep": "test",
+    "Doanh": "test",
+    "Hoa": "dev",
+    "Huy": "test",
+    "Khai": "dev",
+    "Mai": "dev",
+    "Minh": "dev",
+    "Phuong": "dev",
+    "TAnh": "test",
+    "Viet": "test"
+  },
+  "videos": {
+    "mask_An.mp4": {
+      "identity": "An",
+      "group": "mask",
+      "role": "stranger",
+      "split": "dev",
+      "ground_truth": "Unknown"
+    },
+    "mask_Bac.mp4": {
+      "identity": "Bac",
+      "group": "mask",
+      "role": "stranger",
+      "split": "test",
+      "ground_truth": "Unknown"
+    },
+    "mask_Diep.mp4": {
+      "identity": "Diep",
+      "group": "mask",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Diep"
+    },
+    "mask_Doanh.mp4": {
+      "identity": "Doanh",
+      "group": "mask",
+      "role": "stranger",
+      "split": "test",
+      "ground_truth": "Unknown"
+    },
+    "mask_Huy.mp4": {
+      "identity": "Huy",
+      "group": "mask",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Huy"
+    },
+    "mask_Khai.mp4": {
+      "identity": "Khai",
+      "group": "mask",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Khai"
+    },
+    "mask_Mai.mp4": {
+      "identity": "Mai",
+      "group": "mask",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Mai"
+    },
+    "mask_Phuong.mp4": {
+      "identity": "Phuong",
+      "group": "mask",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Phuong"
+    },
+    "mask_TAnh.mp4": {
+      "identity": "TAnh",
+      "group": "mask",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "TAnh"
+    },
+    "mask_Viet.mp4": {
+      "identity": "Viet",
+      "group": "mask",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Viet"
+    },
+    "spoof_An_phone.mp4": {
+      "identity": "An",
+      "group": "spoof",
+      "role": "stranger",
+      "split": "dev",
+      "ground_truth": "Unknown"
+    },
+    "spoof_An_print.mp4": {
+      "identity": "An",
+      "group": "spoof",
+      "role": "stranger",
+      "split": "dev",
+      "ground_truth": "Unknown"
+    },
+    "spoof_Diep_phone.mp4": {
+      "identity": "Diep",
+      "group": "spoof",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Diep"
+    },
+    "spoof_Doanh_phone.mp4": {
+      "identity": "Doanh",
+      "group": "spoof",
+      "role": "stranger",
+      "split": "test",
+      "ground_truth": "Unknown"
+    },
+    "spoof_Hoa_print.mp4": {
+      "identity": "Hoa",
+      "group": "spoof",
+      "role": "stranger",
+      "split": "dev",
+      "ground_truth": "Unknown"
+    },
+    "spoof_Huy_phone.mp4": {
+      "identity": "Huy",
+      "group": "spoof",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Huy"
+    },
+    "spoof_Khai_phone.mp4": {
+      "identity": "Khai",
+      "group": "spoof",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Khai"
+    },
+    "spoof_Mai_phone.mp4": {
+      "identity": "Mai",
+      "group": "spoof",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Mai"
+    },
+    "spoof_Mai_print.mp4": {
+      "identity": "Mai",
+      "group": "spoof",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Mai"
+    },
+    "spoof_Minh_phone.mp4": {
+      "identity": "Minh",
+      "group": "spoof",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Minh"
+    },
+    "spoof_Phuong_phone.mp4": {
+      "identity": "Phuong",
+      "group": "spoof",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Phuong"
+    },
+    "spoof_Phuong_print.mp4": {
+      "identity": "Phuong",
+      "group": "spoof",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Phuong"
+    },
+    "spoof_Viet_phone.mp4": {
+      "identity": "Viet",
+      "group": "spoof",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Viet"
+    },
+    "user_An_normal.mp4": {
+      "identity": "An",
+      "group": "normal",
+      "role": "stranger",
+      "split": "dev",
+      "ground_truth": "Unknown"
+    },
+    "user_Bac_normal.mp4": {
+      "identity": "Bac",
+      "group": "normal",
+      "role": "stranger",
+      "split": "test",
+      "ground_truth": "Unknown"
+    },
+    "user_Diep_normal.mp4": {
+      "identity": "Diep",
+      "group": "normal",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Diep"
+    },
+    "user_Doanh_normal.mp4": {
+      "identity": "Doanh",
+      "group": "normal",
+      "role": "stranger",
+      "split": "test",
+      "ground_truth": "Unknown"
+    },
+    "user_Hoa_normal.mp4": {
+      "identity": "Hoa",
+      "group": "normal",
+      "role": "stranger",
+      "split": "dev",
+      "ground_truth": "Unknown"
+    },
+    "user_Huy_normal.mp4": {
+      "identity": "Huy",
+      "group": "normal",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Huy"
+    },
+    "user_Khai_normal.mp4": {
+      "identity": "Khai",
+      "group": "normal",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Khai"
+    },
+    "user_Mai_normal.mp4": {
+      "identity": "Mai",
+      "group": "normal",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Mai"
+    },
+    "user_Minh_normal.mp4": {
+      "identity": "Minh",
+      "group": "normal",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Minh"
+    },
+    "user_Phuong_normal.mp4": {
+      "identity": "Phuong",
+      "group": "normal",
+      "role": "registered",
+      "split": "dev",
+      "ground_truth": "Phuong"
+    },
+    "user_TAnh_normal.mp4": {
+      "identity": "TAnh",
+      "group": "normal",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "TAnh"
+    },
+    "user_Viet_normal.mp4": {
+      "identity": "Viet",
+      "group": "normal",
+      "role": "registered",
+      "split": "test",
+      "ground_truth": "Viet"
+    }
+  },
+  "mode": "auto",
+  "seed": 42,
+  "created_at": "2026-05-19T21:19:27"
+}
